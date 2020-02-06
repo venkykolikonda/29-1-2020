@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>VBM Info Tech</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container-fluid" style="padding: 0px !important;">
+            <div class="d-flex justify-content-between h-25 align-items-center text-white bg-info  " style="text-transform: uppercase; ">
+                <img src="vbm.jpeg" alt="logo" height="75px" width="150px" class="ml-5 rounded">
+                <a href="#" class="mr-5" style="text-decoration: none;color: white;">logo-out</span>
+            </div>
+
+            <div class="card" id="card-cont">
+            
+            
+            </div>
+            <button class="btn btn-primary mt-5 ml-5 mb-5" onclick="cardadd()">yes</button>
+        </div>
+    </body>
+    <script>
+         function cardadd(){
+           var doc=new XMLHttpRequest();
+           var add=doc.open("GET","http://jsonplaceholder.typicode.com/users")
+                  doc.send(add)
+                  doc.responseType="json";
+                  doc.onload=function(){
+                      var xyz=doc.response;
+                      var cardele=""
+                      xyz.forEach(function(val,ind){
+                          cardele+="<div class='card-header bg-info text-white text-center'>"+val.id+"</div><div class='card-body bg-info text-white text-center'>"+val.name+"</div><div class='card-footer bg-info mb-5 text-white text-center'>"+val.email+"</div>"
+                      })
+                      var sel=document.getElementById("card-cont")
+                      sel.innerHTML=cardele;
+                      sel.classList.toggle("d-none")
+                  }
+       }
+    </script>
+</html>

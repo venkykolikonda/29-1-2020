@@ -1,0 +1,80 @@
+<html>
+
+<head>
+    <title>VBM Info Tech</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <body>
+        <button class="btn btn-outline-primary" onclick="click1()">add</button>
+        <div>
+            <table class="table table-borderd table-dark">
+                <thead class="bg-dark">
+                    <tr style="border-top:0px solid white !important;">
+                        <th scope="col">s.id</th>
+                        <th scope="col">name</th>
+                        <th scope="col">username</th>
+                        <th scope="col">email</th>
+                        <th scope="col">city</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-container" class="bg-info">
+
+                </tbody>
+            </table>
+        </div>
+
+    </body>
+</body>
+<script>
+
+    function click1() {
+        var http = new XMLHttpRequest();
+        var abc = http.open("GET", "http://jsonplaceholder.typicode.com/users");
+        http.responseType = "json";
+        http.send(abc);
+        http.onload = function () {
+            var tablerow = "";
+            var xyz = http.response;
+            xyz.forEach(function (val, ind) {
+                tablerow = tablerow + "<tr><td id='" + ind + "'><a href='card1.html'>" + (ind + 1) + "</a></td><td>" + val.name + "</td><td>" + val.username + "</td><td>" +
+                    val.email + "</td><td>" + val.address.city + "</td></tr>";
+            })
+            var tablebody = document.getElementById("tbody-container")
+            tablebody.innerHTML = tablerow;
+            tablebody.classList.toggle("d-none");
+            //function gettd() {
+                var a, b, c, ty;
+             for (var i = 0; i <= 10; i++) {
+                    a = document.getElementById("tbody-container").children[i].children[0];
+                    b = a.innerText;
+                    c = Number(b);
+                    c = c - 1;
+                    //d=a.children[0].href;
+                    ty = document.getElementsByTagName("a")[i].href;
+                    ty = ty + "?id=" + c;
+                    a.firstElementChild.href = ty;
+
+               // }
+                //d.concat("?id",c)
+
+            }
+            gettd();
+        }
+
+    }
+
+</script>
+
+</html>

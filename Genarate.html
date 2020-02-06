@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>GEnarate table</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <button class="btn btn-outline-primary"  onclick="add()">GENARATE A TABLE</button>
+        <div>
+            <table class="table table-borderd table-dark">
+                <thead class="bg-dark">
+                    <tr style="border-top:0px solid white !important;">
+                        <th scope="col">s.id</th>
+                        <th scope="col">sname</th>
+                        <th scope="col">branch</th>
+                        <th scope="col">email</th>
+                        <th scope="col">m1</th>
+                        <th scope="col">m2</th>
+                        <th scope="col">m3</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-container" class="bg-info">
+
+                </tbody>
+            </table>
+        </div>
+    </body>
+    <script>
+      var Student=function(id,name,branch,email,m1,m2,m3){
+          this.id=id;
+          this.name=name;
+          this.branch=branch;
+          this.email=email;
+          this.m1=m1;
+          this.m2=m2;
+          this.m3=m3;
+          this.gettotall=function(){
+              return this.m1+this.m2+this.m3
+          }
+          this.getstudent=function(){
+              return this.id+this.name+this,branch+this.email
+          }
+      }
+      var std1=new Student(101,"venky","mech","venky@gmail",90,80,70)
+      var std2=new Student(102,"jai","mba","jai@gmail",100,100,100)
+      var std3=new Student(103,"phani","","phani@gmail",69,69,70)
+      var std4=new Student(104,"siva","mech","siva@gmail",80,80,70)
+      var std5=new Student(105,"prsad","mech","prasad@gmail",70,80,70)
+      var std6=new Student(106,"pranay","mech","prany@gmail",50,80,70)
+      var std7=new Student(107,"sanjay","mech","sanjai@gmail",69,55,70)
+      var std8=new Student(108,"dora","mba","dora@gmail",60,75,70)
+      var tableobj=[std1,std2,std3,std4,std5,std6,std7,std8];
+      var table1=""
+      function add(){
+          tableobj.forEach(function(val,ind){
+              table1=table1+"<tr><td class='bg-danger' scope='row'>"+val.id+"</td><td>"+val.name+"</td><td>"+val.branch+"</td><td>"+val.email+"</td><td>"+
+              val.m1+"</td><td>"+val.m2+"</td><td>"+val.m3+"</td></tr>"
+          });
+          document.getElementById("tbody-container").innerHTML=table1;
+      }
+
+    </script>
+</html>
