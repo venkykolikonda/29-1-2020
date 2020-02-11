@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <img onclick="show('para')" class="w-100 h-100 "
+                    src="https://i.pinimg.com/736x/11/2b/74/112b746a2182417b2a947d949798c968.jpg" alt="">
+                <div class="d-none" id="para">
+                    <p>hi this is white flower</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img onclick="show('para1')" class="w-100 h-100 "
+                    src="https://cdn.pixabay.com/photo/2018/10/30/16/06/water-lily-3784022__340.jpg" alt="">
+                <div class="d-none" id="para1">
+                    <p>hi this is red 4k flower</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img onclick="show('para2')" class="w-100  "
+                    src="https://image.shutterstock.com/image-photo/fantastic-natural-images-high-quality-260nw-1501604198.jpg"
+                    alt="">
+                <div class="d-none" id="para2">
+                    <p>hi this is red roses</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img onclick="show('para3')" class="w-100 h-100 "
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT_2_P0E1B8iLlkjDNyOOQbmvzKeXcIQ5SoV3JuUxL0SG5fylwp"
+                    alt="">
+                <div class="d-none" id="para3">
+                    <p>hi this is boke</p>
+                </div>
+            </div>
+        </div>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d30451.79089408188!2d78.4410889!3d17.437019499999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1581133644311!5m2!1sen!2sin"
+            width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+    </div>
+</body>
+
+<script>
+    function show(id) {
+        var para = document.getElementById(id).classList
+        var flag = 0
+        if (para.contains("d-none")) {
+            para.remove('d-none')
+        }
+        else
+            para.add('d-none')
+    }
+</script>
+
+</html>

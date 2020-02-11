@@ -1,0 +1,52 @@
+body{
+    padding: 0px;
+    margin: 0px;
+}
+.main-page{
+    padding-right: 1px !important;
+    padding-left: 1px !important;
+}
+.header{
+    height: 60px;
+    background-color: gray;
+    background: linear-gradient(65deg,gray,green);
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.header a{
+    text-decoration: none;
+    color: white;
+    margin-right: 35px;
+}
+.header a:hover{
+    color:red;
+    text-decoration: none;
+}
+.left-container{
+    width: 20%;
+    height: 100%;
+}
+.right-container{
+ width: 80%;
+ max-width: 70%;
+ margin-left: 75px;
+}
+.rou-cont a{
+    text-decoration: none;
+    color: black;
+}
+.rou-cont a{
+    text-decoration: none;
+    color: black;   
+}
+.left-container ul li a{
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+.left-container ul li a:hover{
+    color: yellowgreen;
+}
+.left-container ul li{
+    background-color:  rgba(53, 50, 50, 0.712) !important;
+}

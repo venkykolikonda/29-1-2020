@@ -1,0 +1,29 @@
+.container-fluid{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+.header-cont{
+    background-color: red;
+    background: linear-gradient(90deg, red, blue);
+    height: 50px;
+    text-align: center;
+    border-radius: 5px;
+}
+.header-cont>a:hover{
+    text-decoration: none;
+    color:yellowgreen;
+}
+.second-cont{
+   background-color: yellow;
+   background: linear-gradient(65deg, yellow, green);
+   height: 60px;
+}
+.second-cont>a{
+    color: black;
+    text-decoration: none;
+}
+
+.second-cont a:hover{
+    text-decoration: none;
+    color: cadetblue;
+}

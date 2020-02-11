@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <title>VBM-Inffo-Tech</title>
+    <link rel="stylesheet" href="tabedit.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container-fluid main-page">
+        <div class="header d-flex justify-content-between align-items-center">
+            <a href="#"><img
+                    src="https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/fc/3034007-inline-i-applelogo.jpg"
+                    alt="logo" height="50px" width="150px" class="rounded ml-4"></a>
+            <a href="#">Logo-out</a>
+        </div>
+        <div class="body-container d-flex">
+            <div class="left-container ">
+                <ul class="list-group list-group-flush" >
+                    <li class="list-group-item"><a href="tabedit.html">Home</a></li>
+                    <li class="list-group-item"><a href="#">About</a></li>
+                    <li class="list-group-item"><a href="#">Services</a></li>
+                </ul>
+            </div>
+            <div class="right-container">
+                <table class="table table-striped  ">
+                    <thead class="bg-info">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>email</th>
+                            <th>Phone Number</th>
+                            <th>City</th>
+                            <th class="rou-cont"><a href="#">Action</a></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-cont">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+     var http=new XMLHttpRequest()
+     http.open("GET","http://jsonplaceholder.typicode.com/users")
+     http.responseType='json'
+     http.send()
+     http.onload=function(){
+         var tbdy=''
+         var serdat=http.response
+         serdat.forEach(function(val,ind){
+             tbdy+="<tr><td>"+val.id+"</td><td>"+val.name+"</td><td>"+val.email+"</td><td>"+val.phone+"</td><td>"
+             +val.address.city+"</td><td><a href='insert.html' class='mr-3'><i class='fas fa-pencil-alt'></i></a><a href='#' onclick='remove("+ind+")' class='mr-3'><i class='fas fa-trash'></i></a><a href='view.html?id="+val.id+"'><i class='fas fa-eye'></i><a></td></tr>"
+         })
+         document.getElementById('tbody-cont').innerHTML=tbdy
+     }
+     /*function remove(){
+         var ht=new XMLHttpRequest()
+         ht.open('DELETE','http://jsonplaceholder.typicode.com/users')
+         ht.responseType='json'
+         ht.send()
+         ht.onload=function(){
+             var abc=ht.response
+             console.log(abc)
+         }
+     }*/
+     function remove(id1){
+         document.getElementById('tbody-cont').children[id1].classList.add('d-none')
+     }
+
+</script>
+
+</html>

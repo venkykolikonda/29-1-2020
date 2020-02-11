@@ -1,0 +1,50 @@
+<html>
+
+<head>
+  <title>VBM-Inffo-Tech</title>
+  <link rel="stylesheet" href="postc.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container-fluid ">
+    <div class="container-fluid d-flex justify-content-between align-items-center header-cont">
+      <img
+        src="https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/fc/3034007-inline-i-applelogo.jpg"
+        alt="log" height="50px" width="150px" class="bordered ml-4">
+      <a href="#" class="text-white">logo-out</a>
+    </div>
+    <div class="container mt-3 d-flex justify-content-around second-cont align-items-center">
+      <a href="#" onclick="gotohome()">Home</a>
+      <a href="#">Services</a>
+      <a href="#">About</a>
+    </div>
+    <div id="add">
+
+    </div>
+    </div>
+    </body>
+    <script>
+        var http=new XMLHttpRequest()
+        http.open("GET","https://jsonplaceholder.typicode.com/posts")
+        http.responseType='json'
+        http.send()
+        http.onload=function(){
+            var text=''
+            var da=http.response
+            da.forEach(function(val,ind){
+                text+="<div class='card text-center'><div class='card-header mt-4'>"+val.id+"</div><div 'class=card-body'>"+val.title+"</div><div class='card-footer mb-4'>"+val.body+"</div></div>"
+            })
+            document.getElementById("add").innerHTML=text
+        }
+    </script>
+    </html>

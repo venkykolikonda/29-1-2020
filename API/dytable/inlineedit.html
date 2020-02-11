@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VBM-Inffo-Tech</title>
+    <link rel="stylesheet" href="tabedit.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container-fluid main-page">
+        <div class="header d-flex justify-content-between align-items-center">
+            <a href="#"><img
+                    src="https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/fc/3034007-inline-i-applelogo.jpg"
+                    alt="logo" height="50px" width="150px" class="rounded ml-4"></a>
+            <a href="#">Logo-out</a>
+        </div>
+        <div class="body-container d-flex">
+            <div class="left-container ">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="ab.html">Home</a></li>
+                    <li class="list-group-item"><a href="com.html">About</a></li>
+                    <li class="list-group-item"><a href="ser.html">Services</a></li>
+                </ul>
+            </div>
+            <div class="right-container">
+                <table class="table ">
+                    <thead class="bg-info">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>email</th>
+                            <th>Phone Number</th>
+                            <th>City</th>
+                            <th class="rou-cont"><a href="#">Action</a></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-cont">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        var http = new XMLHttpRequest()
+        http.open("GET", "http://jsonplaceholder.typicode.com/users")
+        http.responseType = 'json'
+        http.send()
+        http.onload = function () {
+            var tbdy = ''
+            var serdat = http.response
+            serdat.forEach(function (val, ind) {
+                tbdy += "<tr><td ><input disabled  id=id"+val.id+"  style='width:50px' type='text' readonly class='border-0' value=" + val.id + "></td><td ><input id=name" + val.id + " style='width:100px' readonly class='border-0' type='text' value=" + val.name + "></td><td ><input id=email" + val.id + " style='width:100px' type='text' readonly class='border-0' value=" + val.email + "></td><td ><input id=phone" + val.id + " style='width:100px' type='text' readonly class='border-0' value=" + val.phone + "></td><td ><input id=city" + val.id + " style='width:120px' type='text' readonly class='border-0' value="
+                    + val.address.city + "></td><td><span id=ico"+val.id+"><a href='#'><i class='fas fa-pencil-alt' onclick='inlineedt(" + (ind + 1) + ")'></i><a href='#' onclick='remove(" + ind + ")' class='mr-3'></a><a href='#' class='mr-3' ><i class='fas fa-trash'></i></a><a href='view.html?id=" + val.id + "'><i class='fas fa-eye'></i><a> </span><button class='btn btn-primary d-none mr-2' id=sav"+val.id+" onclick=saved("+val.id+")>save</button><button id=can"+val.id+" class='btn btn-primary d-none' onclick='replace("+val.id+")'>Cancel</button></td></tr>"
+            })
+            document.getElementById('tbody-cont').innerHTML = tbdy
+        }
+        function inlineedt(a) {
+            document.getElementById("ico"+a).classList.add('d-none')
+            document.getElementById("can"+a).classList.remove('d-none')
+            document.getElementById("sav"+a).classList.remove('d-none')
+            document.getElementById("id"+a).classList.remove('border-0')
+            document.getElementById("name"+a).classList.remove('border-0')
+            document.getElementById("email"+a).classList.remove('border-0')
+            document.getElementById("phone"+a).classList.remove('border-0')
+            document.getElementById("city"+a).classList.remove('border-0')
+            document.getElementById("id"+a).removeAttribute("readonly")
+            document.getElementById("name"+a).removeAttribute("readonly")
+            document.getElementById("email"+a).removeAttribute("readonly")
+            document.getElementById("phone"+a).removeAttribute("readonly")
+            document.getElementById("city"+a).removeAttribute("readonly")
+        }
+        function replace(a){
+            document.getElementById("ico"+a).classList.remove("d-none")
+            document.getElementById("can"+a).classList.add("d-none")
+            document.getElementById("sav"+a).classList.add('d-none')
+            document.getElementById("id"+a).classList.   add('border-0')
+            document.getElementById("name"+a).classList. add('border-0')
+            document.getElementById("email"+a).classList.add('border-0')
+            document.getElementById("phone"+a).classList.add('border-0')
+            document.getElementById("city"+a).classList. add('border-0')
+            document.getElementById("id"+a).   setAttribute("readonly",true)
+            document.getElementById("name"+a). setAttribute("readonly",true)
+            document.getElementById("email"+a).setAttribute("readonly",true)
+            document.getElementById("phone"+a).setAttribute("readonly",true)
+            document.getElementById("city"+a). setAttribute("readonly",true)
+        }
+        function saved(a){
+                  var a=document.getElementById("id"+a).value
+                  var b=document.getElementById("name"+a).value
+                  var c=document.getElementById("email"+a).value
+                  var d=document.getElementById("phone"+a).value
+                  var e=document.getElementById("city"+a).value
+
+                  var udetails = {
+          "id": a,
+          "name": b,
+          "email": c,
+          "address": {
+            
+            "city":e,
+          },
+          "phone": d,
+        }
+        http = new XMLHttpRequest();
+        http.open("POST", "http://jsonplaceholder.typicode.com/users/")
+        http.responseType='json'
+        http.send(udetails)
+        http.onload = function () {
+          var neeobj = http.response;
+
+          console.log(neeobj)
+        }
+      }
+    </script>
+</body>
+
+</html>

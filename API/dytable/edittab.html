@@ -1,0 +1,164 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VBM-Info-Tech</title>
+    <title>VBM-Inffo-Tech</title>
+    <link rel="stylesheet" href="tabedit.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container-fluid main-page">
+        <div class="header d-flex justify-content-between align-items-center">
+            <a href="#"><img
+                    src="https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/fc/3034007-inline-i-applelogo.jpg"
+                    alt="logo" height="50px" width="150px" class="rounded ml-4"></a>
+            <a href="#">Logo-out</a>
+        </div>
+        <div class="body-container d-flex">
+            <div class="left-container ">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="tabedit.html">Home</a></li>
+                    <li class="list-group-item"><a href="#">About</a></li>
+                    <li class="list-group-item"><a href="#">Services</a></li>
+                </ul>
+            </div>
+            <div class="right-container">
+                <table class="table table-striped  ">
+                    <thead class="bg-info">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>email</th>
+                            <th>Phone Number</th>
+                            <th>City</th>
+                            <th class="rou-cont"><a href="#">Action</a></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-cont">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Button trigger modal -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Table</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-striped w-25">
+                            <thead class="bg-info">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>email</th>
+                                    <th>Phone Number</th>
+                                    <th>City</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input id="td1" type="text" placeholder="id"
+                                            style="width: 70px; border-radius: 3px;"></td>
+                                    <td><input id="td2" type="text" placeholder="enter name"
+                                            style="width: 70px; border-radius: 3px;"></td>
+                                    <td><input id="td3" type="text" placeholder="email"
+                                            style="width: 70px; border-radius: 3px;"></td>
+                                    <td><input id="td4" type="text" placeholder="name"
+                                            style="width: 70px; border-radius: 3px;"></td>
+                                    <td><input id="td5" type="text" placeholder="city"
+                                            style="width: 70px; border-radius: 3px;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick='modal2()'>Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var http = new XMLHttpRequest()
+        http.open("GET", "http://jsonplaceholder.typicode.com/users/")
+        http.responseType = 'json'
+        http.send()
+        http.onload = function () {
+            var tbdy = ''
+            var serdat = http.response
+            serdat.forEach(function (val, ind) {
+                tbdy += "<tr><td>" + val.id + "</td><td>" + val.name + "</td><td>" + val.email + "</td><td>" + val.phone + "</td><td>"
+                    + val.address.city + "</td><td><span onclick='inpfi(" + ind + 1 + ")' data-toggle='modal' data-target='#exampleModalCenter' class='mr-3'><i class='fas fa-pencil-alt'></i></span><a href='#' onclick='remove(" + ind + ")' class='mr-3'><i class='fas fa-trash'></i></a><a href='view.html?id=" + val.id + "'><i class='fas fa-eye'></i><a></td></tr>"
+            })
+            document.getElementById('tbody-cont').innerHTML = tbdy
+        }
+        function modal2() {
+            var a = document.getElementById('td1').value
+            var b = document.getElementById('td2').value
+            var c = document.getElementById('td3').value
+            var d = document.getElementById('td4').value
+            var e = document.getElementById('td5').value
+            var dyda = {
+                "id": a,
+                "name": b,
+                "email": c,
+                "phone": d,
+                "address": {
+                    "city": e
+                }
+            }
+            var api = new XMLHttpRequest()
+            api.open("POST", "http://jsonplaceholder.typicode.com/users/")
+            api.responseType = 'json'
+            api.send(dyda)
+            api.onload = function () {
+                var ne = api.response
+                console.log(ne)
+            }
+        }
+        function inpfi(x) {
+            var ap = new XMLHttpRequest()
+            ap.open("GET", "http://jsonplaceholder.typicode.com/users/"+ x)
+            ap.responseType = 'json'
+            ap.send()
+            ap.onload = function () {
+                var res = ap.response
+                document.getElementById('td1').value = res.id
+                document.getElementById('td2').value = res.name
+                document.getElementById('td3').value = res.email
+                document.getElementById('td4').value = res.phone
+                document.getElementById('td5').value = res.address.city
+            }
+        }
+        function remove(id){
+            document.getElementById('tbody-cont').children[id].classList.add('d-none')
+        }
+    </script>
+</body>
+
+</html>
